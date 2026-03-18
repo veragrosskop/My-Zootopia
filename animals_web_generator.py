@@ -32,26 +32,27 @@ def show_animal(animal_data):
         Diet: Omnivore
         Location: North-America
         Type: Hound
-        \n
-    """
-    data = "" #initialize data
-    for animal in animal_data:
 
+    """
+    data = '<ul class="cards">' #initialize data
+    for animal in animal_data:
+        data += '<li class="cards__item">'
         if "name" in animal:
             name = animal["name"]
-            data += f"Name: {name}" + "\n"
+            data += f"Name: {name}<br/>"
         if "characteristics" in animal:
             if "diet" in animal["characteristics"]:
                 diet = animal["characteristics"]["diet"]
-                data += f"Diet: {diet}" + "\n"
+                data += f"Diet: {diet}<br/>"
         if "locations" in animal:
             location = animal["locations"][0]
-            data += f"Location: {location}" + "\n"
+            data += f"Location: {location}<br/>"
         if "characteristics" in animal:
             if "type" in animal["characteristics"]:
                 type = animal["characteristics"]["type"]
-                data += f"Type: {type}" + "\n"
-        data += "\n"
+                data += f"Type: {type}<br/>"
+        data += '</li>'
+    data += '</ul>'
     return data
 
 def main():
