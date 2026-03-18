@@ -39,19 +39,19 @@ def show_animal(animal_data):
         data += '<li class="cards__item">'
         if "name" in animal:
             name = animal["name"]
-            data += f"Name: {name}<br/>"
+            data += f'<div class="card__title">{name}</div><p class="card__text">'
         if "characteristics" in animal:
             if "diet" in animal["characteristics"]:
                 diet = animal["characteristics"]["diet"]
-                data += f"Diet: {diet}<br/>"
+                data += f"<strong>Diet:</strong> {diet}<br/>"
         if "locations" in animal:
             location = animal["locations"][0]
-            data += f"Location: {location}<br/>"
+            data += f"<strong>Location:</strong> {location}<br/>"
         if "characteristics" in animal:
             if "type" in animal["characteristics"]:
                 type = animal["characteristics"]["type"]
-                data += f"Type: {type}<br/>"
-        data += '</li>'
+                data += f"<strong>Type:</strong> {type}<br/>"
+        data += '</p></li>'
     data += '</ul>'
     return data
 
