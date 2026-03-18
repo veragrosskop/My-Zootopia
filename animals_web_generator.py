@@ -24,6 +24,26 @@ def write_animals_html(html_data, new_file_path, str_replace, data):
     except:
         print("Error writing to file")
 
+def serialize_animal(animal):
+    """Serialize animal data into an HTML formated block"""
+
+    data = '<li class="cards__item">'
+    if "name" in animal:
+        name = animal["name"]
+        data += f'<div class="card__title">{name}</div><p class="card__text">'
+    if "characteristics" in animal:
+        if "diet" in animal["characteristics"]:
+            diet = animal["characteristics"]["diet"]
+            data += f"<strong>Diet:</strong> {diet}<br/>"
+    if "locations" in animal:
+        location = animal["locations"][0]
+        data += f"<strong>Location:</strong> {location}<br/>"
+    if "characteristics" in animal:
+        if "type" in animal["characteristics"]:
+            type = animal["characteristics"]["type"]
+            data += f"<strong>Type:</strong> {type}<br/>"
+    data += '</p></li>'
+    return data
 
 def show_animal(animal_data):
     """ Prints an overview of some of the animal data if it exists otherwise it just prints nothing.
@@ -36,22 +56,7 @@ def show_animal(animal_data):
     """
     data = '<ul class="cards">' #initialize data
     for animal in animal_data:
-        data += '<li class="cards__item">'
-        if "name" in animal:
-            name = animal["name"]
-            data += f'<div class="card__title">{name}</div><p class="card__text">'
-        if "characteristics" in animal:
-            if "diet" in animal["characteristics"]:
-                diet = animal["characteristics"]["diet"]
-                data += f"<strong>Diet:</strong> {diet}<br/>"
-        if "locations" in animal:
-            location = animal["locations"][0]
-            data += f"<strong>Location:</strong> {location}<br/>"
-        if "characteristics" in animal:
-            if "type" in animal["characteristics"]:
-                type = animal["characteristics"]["type"]
-                data += f"<strong>Type:</strong> {type}<br/>"
-        data += '</p></li>'
+        data += serialize_animal(animal)
     data += '</ul>'
     return data
 
